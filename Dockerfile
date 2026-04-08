@@ -2,6 +2,13 @@
 
 FROM rust:1-slim-bookworm AS builder
 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    make \
+    gcc \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
 ARG OPENFANG_REPO=https://github.com/RightNow-AI/openfang.git
 ARG OPENFANG_REF=main
 ARG CACHE_BUST=1
